@@ -15,7 +15,6 @@ cd ..
 echo ">>> Installing Backend Dependencies..."
 cd backend
 pip install -r requirements.txt
-python seed.py
 cd ..
 
 echo "Build complete!"

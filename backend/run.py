@@ -4,6 +4,12 @@ from app.models import User, Department, Complaint, ComplaintUpdate, Notificatio
 
 app = create_app()
 
+with app.app_context():
+    try:
+        db.create_all()
+    except Exception as e:
+        print(f"Failed to initialize database: {e}")
+
 @app.shell_context_processor
 def make_shell_context():
     return {

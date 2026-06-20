@@ -19,7 +19,7 @@ def create_app(config_name=None):
     if config_name is None:
         config_name = os.environ.get('FLASK_ENV', 'development')
     
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='../../frontend/dist', static_url_path='/')
     app.config.from_object(config.get(config_name, config['default']))
     
     # Initialize extensions
@@ -73,5 +73,13 @@ def create_app(config_name=None):
     @app.route('/api/health')
     def health():
         return {'status': 'healthy', 'message': 'CivicConnect AI is running'}
+
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def serve(path):
+        if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+            return app.send_static_file(path)
+        else:
+            return app.send_static_file('index.html')
 
     return app

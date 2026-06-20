@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.env
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+backend/instance/
+backend/*.sqlite3
+backend/*.db
+.DS_Store
+*.log

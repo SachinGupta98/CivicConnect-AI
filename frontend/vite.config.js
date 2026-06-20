@@ -39,7 +39,7 @@ export default defineConfig({
         runtimeCaching: [
           {
             // API calls — network first, fallback to cache
-            urlPattern: /^http:\/\/localhost:5000\/api\/.*/i,
+            urlPattern: /.*\/api\/.*/i,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'api-cache',
